@@ -2,23 +2,20 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const crudDirPath = path.join(__dirname + "/./../services/crud");
+const servicesDirPath = path.join(__dirname + "/./../services");
 const clientDirPath = path.join(__dirname + "/./../../client-side-files");
 
-// const readFn = require(crudDirPath + "/read.js");
+const readFn = require(servicesDirPath + "/crud/read.js");
 // const createFn = require(crudDirPath + "/create.js");
 // const updateFn = require(crudDirPath + "/update.js");
 // const deleteFn = require(crudDirPath + "/delete.js");
 
 const PORT = 7879;
-console.log("here i am");
 const server = http.createServer((req, res) => {
-  console.log("I am here as well");
   const method = req.method;
   const url = req.url;
   switch (url) {
     case "/":
-      console.log("from /", url);
       fs.createReadStream(clientDirPath + "/home/home.html").pipe(res);
       break;
     case "/homeStyle":
@@ -33,7 +30,19 @@ const server = http.createServer((req, res) => {
       );
       break;
     case "/showStudents":
-      res.end("Showing students");
+      fs.createReadStream(
+        clientDirPath + "/show-students/show-students.html"
+      ).pipe(res);
+      break;
+    case "/showStudentsStyle":
+      fs.createReadStream(
+        clientDirPath + "/show-students/show-students.css"
+      ).pipe(res);
+      break;
+    case "/showStudentsScript":
+      fs.createReadStream(
+        clientDirPath + "/show-students/show-students.js"
+      ).pipe(res);
       break;
     case "/addStudent":
       res.end("Added new student");
@@ -44,6 +53,14 @@ const server = http.createServer((req, res) => {
     case "/removeStudent":
       res.end("Student removed");
       break;
+    case "/api/students":
+      console.log("method:", method);
+      switch (method) {
+        case "GET":
+          const students = readFn();
+          res.end(students);
+          break;
+      }
     default:
       fs.createReadStream(
         clientDirPath + "/page-not-found-404/page-not-found-404.html"
@@ -52,5 +69,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Server is up and running. Listening on port ${PORT}`);
+  console.log(`\nServer is up and running. Listening on port ${PORT}\n`);
 });
