@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "David Ben-Gurion",
+    "age": 9,
+    "gpa": 89
+  }, 
+  {
+    "id": 2,
+    "name": "Golda Meir",
+    "age": 8,
+    "gpa": 93
+  }
+]
