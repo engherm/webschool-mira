@@ -1,0 +1,15 @@
+[
+  {
+    "id":1,
+    "name":"Moyshale",
+    "age":9.3,
+    "gpa":89
+  },
+
+  {
+    "id":2,
+    "name":"Anshl",
+    "age":8.11,
+    "gpa":78
+  }
+]
