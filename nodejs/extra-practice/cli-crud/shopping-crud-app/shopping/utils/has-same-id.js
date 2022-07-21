@@ -1,6 +1,6 @@
-function hasSameId(cart, newItem) {
+function hasSameId(cart, theProdId) {
   for (const item of cart) 
-    if (item.id === newItem.id) return true;
+    if (item.id === theProdId) return true;
   return false;
 }
 

@@ -4,6 +4,7 @@ const command = args[0] ? args[0].toLowerCase() : 'read';
 const readFn = require('./api/read');
 const createFn = require('./api/create');
 const updateFn = require('./api/update');
+const deleteFn = require('./api/delete');
 
 switch (command) {
   case 'read':
@@ -48,6 +49,10 @@ switch (command) {
         } else console.log("missing id - data to update must contain product id");
       } else console.log('argument to update function must be an object');
     } else console.log('missing argument to update function');
+    break;
+  case 'delete':
+    console.log(args[1], typeof args[1]);
+    deleteFn(parseInt(args[1]));
     break;
   default:
     console.log('Unknown command');
