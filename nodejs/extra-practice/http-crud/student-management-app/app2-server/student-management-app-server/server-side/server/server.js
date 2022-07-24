@@ -29,9 +29,9 @@ const server = http.createServer(async (req, res) => {
             buffers.push(chunk);
           }
           const studentData = JSON.parse(Buffer.concat(buffers).toString());
-          // convert keys with numeric values to numbers
+          // convert keys with numeric values as strings to numbers
           for (const key in studentData) {
-            if (key !== 'name') {
+            if (updateStudentData[key] && key !== 'name') {
               studentData[key] = parseFloat(studentData[key]);
             }
           }
@@ -46,14 +46,14 @@ const server = http.createServer(async (req, res) => {
           const updateStudentData = JSON.parse(
             Buffer.concat(updateBuffers).toString()
           );
-          // convert keys with numeric values to numbers
+          // convert keys with numeric values as strings to numbers
           for (const key in updateStudentData) {
-            if (key !== 'name') {
+            if (updateStudentData[key] && key !== 'name') {
               updateStudentData[key] = parseFloat(updateStudentData[key]);
             }
           }
-          updateFn(updateStudentData);
-          res.end();
+          const updateMsg = updateFn(updateStudentData)
+          res.end(updateMsg);
           break;
         case 'DELETE':
           break;
