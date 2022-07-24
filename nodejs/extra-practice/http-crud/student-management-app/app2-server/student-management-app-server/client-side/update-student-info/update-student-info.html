@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Student Info</title>
+    <link rel="stylesheet" href="updateStudentInfoPageStyle" />
+    <script src="updateStudentInfoPageScript" defer></script>
+  </head>
+  <body>
+    <h1>Update Student Info</h1>
+    <div id="form-wrapper">
+      <form id="update-student-info-form">
+        <fieldset>
+          <br /><br />
+          <label for="id">ID:</label>
+          <input
+            type="number"
+            name="id"
+            id="id"
+            placeholder="Student's ID"
+            required
+          />
+          <br /><br />
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Student's name"
+          />
+          <br /><br />
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            name="age"
+            id="age"
+            step="0.01"
+            placeholder="Student's age"
+          />
+          <br /><br />
+          <label for="gpa">GPA:</label>
+          <input
+            type="number"
+            name="gpa"
+            id="gpa"
+            step="0.01"
+            placeholder="Student's GPA"
+          />
+          <br /><br />
+        </fieldset>
+        <br /><br />
+        <button type="submit">Update student info</button>
+      </form>
+    </div>
+  </body>
+</html>
