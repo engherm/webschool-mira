@@ -4,11 +4,14 @@ const path = require('path');
 
 const clientSideDirPath = path.join(__dirname + '/./../../client-side');
 const crudApiDirPath = path.join(__dirname + '/./../apis/crud-api');
+const utilsDirPath = path.join(__dirname + '/./../utils');
 
 const readFn = require(crudApiDirPath + '/read/read.js');
 const createFn = require(crudApiDirPath + '/create/create.js');
 const updateFn = require(crudApiDirPath + '/update/update.js');
 const deleteFn = require(crudApiDirPath + '/delete/delete.js');
+const handleIncomingBuffersFn = require(utilsDirPath +
+  '/handle-incoming-buffers.js');
 
 const PORT = 5252;
 
@@ -18,49 +21,37 @@ const server = http.createServer(async (req, res) => {
 
   switch (url) {
     case '/api/crud/students':
+      let studentData;
+      let msg;
       switch (method) {
         case 'GET':
           const studentsList = readFn();
           res.end(studentsList);
           break;
         case 'POST':
-          const buffers = [];
-          for await (const chunk of req) {
-            buffers.push(chunk);
-          }
-          const studentData = JSON.parse(Buffer.concat(buffers).toString());
-          // convert keys with numeric values as strings to numbers
-          for (const key in studentData) {
-            if (updateStudentData[key] && key !== 'name') {
-              studentData[key] = parseFloat(studentData[key]);
-            }
-          }
-          const msg = createFn(studentData);
+          studentData = await handleIncomingBuffersFn(req);
+          msg = createFn(studentData);
           res.end(msg);
           break;
         case 'PUT':
-          const updateBuffers = [];
-          for await (const chunk of req) {
-            updateBuffers.push(chunk);
-          }
-          const updateStudentData = JSON.parse(
-            Buffer.concat(updateBuffers).toString()
-          );
-          // convert keys with numeric values as strings to numbers
-          for (const key in updateStudentData) {
-            if (updateStudentData[key] && key !== 'name') {
-              updateStudentData[key] = parseFloat(updateStudentData[key]);
-            }
-          }
-          const updateMsg = updateFn(updateStudentData)
-          res.end(updateMsg);
+          studentData = await handleIncomingBuffersFn(req);
+          msg = updateFn(studentData);
+          res.end(msg);
           break;
         case 'DELETE':
+          studentData = await handleIncomingBuffersFn(req);
+          msg = deleteFn(studentData);
+          res.end(msg);
           break;
       }
       break;
     case '/':
       fs.createReadStream(clientSideDirPath + '/home/home.html').pipe(res);
+      break;
+    case '/homePageProfileImg':
+      fs.createReadStream(
+        clientSideDirPath + '/home/images/mrs-doubtfire.jpg'
+      ).pipe(res);
       break;
     case '/homePageStyle':
       fs.createReadStream(clientSideDirPath + '/home/home.css').pipe(res);
@@ -116,6 +107,21 @@ const server = http.createServer(async (req, res) => {
     case '/removeStudent':
       fs.createReadStream(
         clientSideDirPath + '/remove-student/remove-student.html'
+      ).pipe(res);
+      break;
+    case '/removeStudentPageStyle':
+      fs.createReadStream(
+        clientSideDirPath + '/remove-student/remove-student.css'
+      ).pipe(res);
+      break;
+    case '/removeStudentPageScript':
+      fs.createReadStream(
+        clientSideDirPath + '/remove-student/remove-student.js'
+      ).pipe(res);
+      break;
+    case '/pageNotFoundPageStyle':
+      fs.createReadStream(
+        clientSideDirPath + '/page-not-found-404/page-not-found-404.css'
       ).pipe(res);
       break;
     default:
