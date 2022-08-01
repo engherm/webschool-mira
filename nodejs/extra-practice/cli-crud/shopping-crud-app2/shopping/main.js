@@ -27,10 +27,23 @@ switch (command) {
     if (args[1]) {
       if (args[1][0] === "{" && args[1][args[1].length - 1] === "}") {
         const updateDataObj = JSON.parse(args[1]);
-        msg = updateFn(updateDataObj);
-        console.log(msg);
+        if (Object.keys(updateDataObj).length !== 0) {
+          if (
+            Object.keys(updateDataObj).includes("id") &&
+            Object.keys(updateDataObj).length > 1
+          ) {
+            msg = updateFn(updateDataObj);
+            console.log(msg);
+          } else {
+            console.log("Missing data to update");
+          }
+        } else {
+          console.log("No data given to update");
+        }
       } else {
-        console.log("Argument to function update must be of type object - eg '{}'");
+        console.log(
+          `Argument to function update must be of type object - e.g. '{"id": 1, "name": "dubonim", "price": 25}'`
+        );
       }
     } else {
       console.log("Missing argument to function update");
