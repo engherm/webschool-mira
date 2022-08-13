@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{$||$} - SIGN IN</title>
+    <link rel="stylesheet" href="signin.css">
+    <script src="signin.js" defer></script>
+  </head>
+  <body>
+    <h3>
+      <span class="logo">{$||$}</span>
+      BANK OF LILLIPUT
+      <span class="logo">{$||$}</span>
+    </h3>
+    <h1>SIGN IN</h1>
+    <form id="signin-form" autocomplete="off">
+      <br /><br />
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Enter username"
+        size="25"
+      />
+      <br /><br />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Enter password"
+        size="25"
+      />
+      <br /><br />
+      <button type="submit">SIGN IN</button>
+    </form>
+    <nav>
+      <ul>
+        <li>Got other plans? <a href="/">HOME</a></li>
+        <li>New customer? <a href="/register">REGISTER</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

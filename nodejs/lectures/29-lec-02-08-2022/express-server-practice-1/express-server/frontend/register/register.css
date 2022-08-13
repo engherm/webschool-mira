@@ -1,0 +1,84 @@
+body {
+  font-family: sans-serif;
+  color: #fff;
+  background-color: rgb(28, 121, 158);
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.logo {
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+nav {
+  margin: 2rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin: 1rem;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 1rem;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+#registration-form {
+  background-color: rgb(56, 185, 236);
+  text-align: center;
+
+}
+
+#registration-form label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color:rgb(28, 121, 158)
+}
+
+#registration-form input {
+  background-color: rgb(56, 185, 236);
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(28, 121, 158);
+  font-size: 1.5rem;
+  color: rgb(28, 121, 158);
+}
+
+#registration-form input::placeholder {
+  font-size: 1.2rem;
+  color: #fff
+}
+
+#registration-form button {
+  border: none;
+  outline: none;
+  color: rgb(28, 121, 158);
+  background-color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px 20px;
+  margin: 20px;
+  cursor: pointer;
+  transition: transform 0.1s linear;
+}
+
+#registration-form button:hover {
+  color: #fff;
+  background-color: rgb(28, 121, 158);
+}
+
+#registration-form button:active {
+  transform: scale(0.9);
+}
