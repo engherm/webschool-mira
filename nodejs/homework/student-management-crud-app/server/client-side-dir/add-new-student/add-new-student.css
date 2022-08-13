@@ -1,0 +1,25 @@
+body {
+  font-family: sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin: 7px;
+}
+
+a {
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+label {
+  font-weight: bold;
+}

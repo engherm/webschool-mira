@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class - Add New Student</title>
+    <link rel="stylesheet" href="/addNewStudentStyle" />
+    <script src="/addNewStudentScript" defer></script>
+  </head>
+  <body>
+    <h3>Mrs. Doubtfire's Classroom</h3>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/displayStudents">Display Students</a></li>
+        <li><a href="/updateStudentData">Update a Student's Data</a></li>
+        <li><a href="/deleteStudent">Delete a Student</a></li>
+      </ul>
+    </nav>
+
+    <h1>Add New Student</h1>
+    <form id="add-new-student-form">
+      <fieldset>
+        <br /><br />
+        <label for="id">ID:</label>
+        <input type="number" name="id" id="id" />
+        <br /><br />
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+        <br /><br />
+        <label for="age">Age:</label>
+        <input type="number" name="age" id="age" step="0.1" />
+        <br /><br />
+        <label for="gpa">GPA:</label>
+        <input type="number" name="gpa" id="gpa" step="0.1" />
+        <br /><br />
+      </fieldset>
+      <br /><br />
+      <button type="submit">Add new student</button>
+    </form>
+  </body>
+</html>
