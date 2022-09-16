@@ -23,7 +23,6 @@ class App extends Component {
 
   onSearchChange = event => {
     const searchField = event.target.value.toLowerCase();
-
     this.setState(() => {
       return { searchField };
     });
@@ -32,6 +31,7 @@ class App extends Component {
   render() {
     const { monsters, searchField } = this.state;
     const { onSearchChange } = this;
+
     const filteredMonsters = monsters.filter(monster => {
       return monster.name.toLowerCase().includes(searchField);
     });
